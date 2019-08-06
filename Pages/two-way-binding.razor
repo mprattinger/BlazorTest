@@ -1,0 +1,9 @@
+@page "/two-way-binding"
+
+<input type="checkbox" @bind="updateString" />
+
+<p>This string will get value from the above text field: @updateString.ToString()</p>
+
+@code{
+    bool updateString{ get; set; } = true;
+}

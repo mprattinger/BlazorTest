@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject IB2CService b2cService;
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app @loaded.
+
+<button @onclick="clickMe">Click Me!</button>
+
+@code {
+
+    private string loaded { get; set; } = string.Empty;
+
+    private async Task clickMe(){
+        var data = await b2cService.Login();
+        loaded = $"Logged in! {data}";
+    }
+}
