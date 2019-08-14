@@ -1,4 +1,5 @@
 using BlazorTest.Services;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,10 @@ namespace BlazorTest
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IB2CService, B2CService>();
+            services.AddAuthorizationCore();
+            services.AddScoped<MyAuthenticationStateProvider>();
+            services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<MyAuthenticationStateProvider>());
+            services.AddSingleton<B2CService>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

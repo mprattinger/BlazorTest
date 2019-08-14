@@ -1,18 +1,31 @@
 ﻿@page "/"
-@inject IB2CService b2cService;
+@inject B2CService b2cService;
 
-<h1>Hello, world!</h1>
+<AuthorizeView>
+    <NotAuthorized>
+        <h1>Hello, world!</h1>
 
-Welcome to your new app @loaded.
+        Welcome to your new app!
 
-<button @onclick="clickMe">Click Me!</button>
+        <button @onclick="login">Log me in!</button>
+    </NotAuthorized>
+    <Authorized>
+        <h1>Hello @context.User.Identity.Name</h1>
+        <button @onclick="logout">Log me out!</button>
+    </Authorized>
+</AuthorizeView>
 
 @code {
 
-    private string loaded { get; set; } = string.Empty;
+    private async Task login(){
+        //await b2cService.Login();
+        //loaded = $"Logged in! {data}";
+        Console.WriteLine("Trying to log you in...");
+        await b2cService.GetTokenAsync();
+    }
 
-    private async Task clickMe(){
-        var data = await b2cService.Login();
-        loaded = $"Logged in! {data}";
+    private async Task logout(){
+        //await b2cService.Login();
+        //loaded = $"Logged in! {data}";
     }
 }

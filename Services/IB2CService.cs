@@ -8,6 +8,6 @@ namespace BlazorTest.Services
         string IdToken { get; }
         bool IsLoggedIn { get; }
 
-        Task<string> Login();
+        Task Login();
     }
 }

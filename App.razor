@@ -1,5 +1,13 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
-    <NotFoundContent>
-        <p>Sorry, there's nothing at this address.</p>
-    </NotFoundContent>
-</Router>
+﻿<CascadingAuthenticationState>
+    <Router AppAssembly="typeof(Program).Assembly">
+        <NotFoundContent>
+            <p>Sorry, there's nothing at this address.</p>
+        </NotFoundContent>
+        <NotAuthorizedContent>
+            Nonono;
+        </NotAuthorizedContent>
+        <AuthorizingContent>
+            Wait...
+        </AuthorizingContent>
+    </Router>
+    </CascadingAuthenticationState>
